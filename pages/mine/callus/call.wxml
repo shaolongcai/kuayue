@@ -1,0 +1,6 @@
+<view class='callus'>
+  <text class="callUS-son">扫描或长按二维码关注公众号</text>
+  <image src='../../../images/icon/nvmingxing.png' class='callUS-son'></image>
+  <text class='callUS-son'>联系电话：0760-5555555</text>
+  <text class='callUS-son'>联系地址：中山五路汇智大厦B座</text>
+</view>
