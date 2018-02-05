@@ -20,4 +20,3 @@
 <modal hidden="{{hiddenmodalput1}}" title="中断订单请联系调度中心" no-cancel="trues" confirm-text="返回" bindconfirm="confirm1">
   <text class='txettip'>0760-8335151</text>
 </modal>
-<!-- 测试github -->
