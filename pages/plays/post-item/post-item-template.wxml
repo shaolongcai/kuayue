@@ -1,0 +1,24 @@
+<template name="postItem">
+  <view class="post-container">
+    <text class="post-date">订单号 : {{date}}</text>
+    <view class='superfather'>
+      <view class='father'>
+        <view class='post-die'>
+          <text class="post-title">{{orgin}}</text>
+          <view class='post-die2'>
+            <text class="post-content">{{distance}}</text>
+            <image class='post-image' src="{{jiantou}}"></image>
+          </view>
+          <text class="post-title">{{destination}}</text>
+        </view>
+        <text class="post-content">距离你  :  {{distance}}    金额  :  {{money}}
+            </text>
+      </view>
+       <text class='post-xiangqing' catchtap='onClick'>详情></text> 
+    </view>
+    <view class='post-dingdan'>
+      <button class="post-confirm-success" catchtap='onConfirmTap'>完成订单</button>
+      <button class="post-confirm-stop" catchtap='onStopTap'>终止订单</button>
+    </view>
+  </view>
+</template>

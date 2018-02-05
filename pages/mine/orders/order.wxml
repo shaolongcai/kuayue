@@ -1,0 +1,22 @@
+<view class='allOrder'>
+  <view class='order'>选择器做不了.完全不会</view>
+
+  <view class='order'>
+    <view class='orderSon'>完成单数</view>
+    <input class='input' type='number' placeholder='请输入数据'></input>
+  </view>
+
+  <view class='order'>
+    <view class='orderSon'>总金额　</view>
+    <input type='number' placeholder='请输入数据'></input>
+  </view>
+
+  <view class='order'>
+    <view class='orderSon'>运输次数</view>
+    <input type='number' placeholder='请输入数据'></input>
+  </view>
+</view>
+    <view class='orderbutton'>
+      <button class="post-confirm-success" catchtap='onConfirmTap'>提交</button>
+      <button class="post-confirm-stop" catchtap='onStopTap'>取消</button>
+    </view>

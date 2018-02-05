@@ -1,0 +1,17 @@
+<view class='all'>
+  <view class='today' catchtap='onclickToday'>
+    <text class="today-post">当日表单提交</text>
+    <text>></text>
+  </view>
+
+  <view class='today' catchtap='onclickHistory'>
+    <text class="today-post">历史订单</text>
+    <text>></text>
+  </view>
+
+  <view class='today' catchtap='onclickus'>
+    <text class="today-post">联系我们</text>
+    <text>></text>
+  </view>
+
+</view>

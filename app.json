@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/posts/post",
+    "pages/plays/play",
+    "pages/mine/my",
+    "pages/mine/callus/call",
+    "pages/mine/orders/order"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#405f80",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "borderStyle": "white",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/posts/post",
+        "text": "工作台",
+        "iconPath": "images/tab/color.png",
+        "selectedIconPath": "images/tab/color-filling.png"
+      },
+      {
+        "pagePath": "pages/plays/play",
+        "text": "已接订单",
+        "iconPath": "images/tab/email.png",
+        "selectedIconPath": "images/tab/email-filling.png"
+      },
+      {
+        "pagePath": "pages/mine/my",
+        "text": "我的",
+        "iconPath": "images/tab/account.png",
+        "selectedIconPath": "images/tab/account-filling.png"
+      }
+    ]
+  }
+}

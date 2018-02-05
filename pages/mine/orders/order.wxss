@@ -1,0 +1,58 @@
+.allOrder {
+  display: flex;
+  flex-direction: column;
+  margin: 20rpx;
+}
+
+.order {
+  font-size: 30rpx;
+  font-weight: 400;
+  width: 100%;
+  height: 50rpx;
+  align-items: center;
+  padding-bottom: 20rpx;
+  padding-top: 20rpx;
+  line-height: 20rpx;
+  border-bottom: 1px solid #ededed;
+  display: flex;
+  flex-direction: row;
+}
+
+.orderSon {
+  align-items: center;
+  justify-content: center;
+  margin-left: 20rpx;
+  margin-right: 40rpx;
+}
+
+.input {
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  margin-right: 20rpx;
+}
+
+.orderbutton {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.post-confirm-success {
+  background-color: #09bb07;
+  color: #fff;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  height: 60rpx;
+  width: 30%;
+  line-height: 60rpx;
+}
+
+.post-confirm-stop {
+  margin-left: 100rpx;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  height: 60rpx;
+  width: 30%;
+  line-height: 60rpx;
+}

@@ -1,0 +1,25 @@
+.all {
+  display: flex;
+  margin-right: 14rpx;
+  margin-left: 14rpx;
+  flex-direction: column;
+}
+
+.today {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  display: flex;
+  border-bottom: 1px solid #ededed;
+  flex-direction: row;
+}
+
+.today-post {
+  line-height: 40rpx;
+  height: 40rpx;
+  width: 98%;
+}
+
+.today text {
+  font-weight: 500;
+  font-size: 32rpx;
+}

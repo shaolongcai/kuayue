@@ -1,0 +1,58 @@
+@import "post-item/post-item-template.wxss";
+
+@keyframes kf-marque-animation {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-33.3%);
+  }
+}
+
+.marquee {
+  width: 100%;
+  height: 44rpx;
+  line-height: 44rpx;
+  background: #fff;
+  border: none;
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+  position: fixed;
+  font-size: 28rpx;
+  z-index: 3;
+}
+
+.marquee .content {
+  display: inline-block;
+  padding-right: 0px;
+  position: relative;
+  animation: kf-marque-animation 11.3s linear infinite;
+  white-space: nowrap;
+}
+
+.post-all {
+  padding-top: 50rpx;
+}
+
+.phoneNumber {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.phoneNumber button {
+   color: #fff;
+  background-color: #09bb07; 
+  width: 40%;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.all-post {
+  display: flex;
+}

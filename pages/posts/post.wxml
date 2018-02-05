@@ -1,0 +1,29 @@
+<import src="post-item/post-item-template.wxml" />
+<!--<import src="/pages/posts/post-item/post-item-template.wxml" />-->
+
+<view class="marquee">
+  <view class="content">
+    <text>{{text}}</text>
+    <text style="display: inline-block; width: 5em;"></text>
+    <text>{{text}}</text>
+    <text style="display: inline-block; width: 5em;"></text>
+    <text>{{text}}</text>
+    <text style="display: inline-block; width: 5em;"></text>
+  </view>
+</view>
+
+<view class='post-all'>
+  <block wx:for="{{postList}}" wx:for-item="item" wx:for-index="idx">
+    <view data-postId="{{item.postId}}">
+      <template is="postItem" data="{{...item}}" />
+    </view>
+  </block>
+</view>
+
+<modal hidden="{{hiddenmodalput}}" title="注册后即可开始接单" cancel-text="取消" bindcancel="cancel" confirm-text="提交" bindconfirm="confirm">
+  <input type='pattern' name="phone" placeholder="请输入手机号" maxlength='11' auto-focus  bindinput="phoneInput"/>
+  <view class='phoneNumber'>
+    <input type='number' name="code" placeholder='请输入验证码' maxlength='6' auto-focus  bindinput="codeInput"/>
+    <button catchtap='confirmNumber'>获取验证码</button>
+  </view>
+</modal>
