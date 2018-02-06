@@ -1,6 +1,7 @@
 <import src="post-item/post-item-template.wxml" />
 <!--<import src="/pages/posts/post-item/post-item-template.wxml" />-->
 
+<!-- 顶栏滚动条 -->
 <view class="marquee">
   <view class="content">
     <text>{{text}}</text>
@@ -12,6 +13,7 @@
   </view>
 </view>
 
+<!-- 单子模板 -->
 <view class='post-all'>
   <block wx:for="{{postList}}" wx:for-item="item" wx:for-index="idx">
     <view data-postId="{{item.postId}}">
@@ -20,6 +22,8 @@
   </block>
 </view>
 
+
+<!-- 手机验证码模块 -->
 <modal hidden="{{hiddenmodalput}}" title="注册后即可开始接单" cancel-text="取消" bindcancel="cancel" confirm-text="提交" bindconfirm="confirm">
   <input type='pattern' name="phone" placeholder="请输入手机号" maxlength='11' auto-focus  bindinput="phoneInput"/>
   <view class='phoneNumber'>

@@ -23,8 +23,10 @@ Page({
 
   //TODO 终止订单逻辑
   onStopTap: function () {
-    this.setData({
-      hiddenmodalput1: !this.data.hiddenmodalput1
+    wx.showModal({
+      title: '中断订单请联系调度中心',
+      content: '0760-8335151',
+      showCancel:false
     })
   },
 
@@ -58,17 +60,6 @@ Page({
     })
   },
 
-  cancel: function () {
-    this.setData({
-      hiddenmodalput: true
-    })
-    console.log('你点击了取消')
-    wx.showToast({
-      title: '你点击了取消',
-      duration: 1000
-    })
-  },
-
   //todo 获取验证码逻辑
   confirmNumber: function () {
     console.log('你点击了获取验证码')
@@ -82,11 +73,6 @@ Page({
   confirm1: function () {
     this.setData({
       hiddenmodalput1: true
-    })
-    console.log('你点击了返回')
-    wx.showToast({
-      title: '你点击了返回',
-      duration: 1000
     })
   },
 
