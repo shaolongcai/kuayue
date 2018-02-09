@@ -1,4 +1,4 @@
-var postsData = require('../../data/posts-data.js')
+// var postsData = require('../../data/posts-data.js')
 const AV = require('../../utils/av-live-query-weapp-min');
 var app = getApp();
 
@@ -15,15 +15,11 @@ Page({
   onLoad: function () {
     //此处需改为从网络读取数据列表或后台修改数据
     var _this = this;
-
     var query = new AV.Query('Orders');
     query.equalTo('state', '0');//0-发布，1-已被接，2-已完成
-
     query.find().then(function (todos) {
-
       var postsData2 = JSON.stringify(todos);
       var aa = JSON.parse(postsData2);
-
       _this.setData({
         postList: aa
       });
@@ -33,10 +29,9 @@ Page({
     }, function (error) {
       // 异常处理
     });
-
-
   },
 
+  //接单
   onConfirmTap: function (event) {
     console.log(event.currentTarget.id)
 
@@ -52,7 +47,6 @@ Page({
       // 异常处理
       console.error(error);
     });
-
     this.setData({
       hiddenmodalput: !this.data.hiddenmodalput
     })

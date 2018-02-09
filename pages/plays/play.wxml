@@ -1,22 +1,15 @@
 <import src="post-item/post-item-template.wxml" />
 <view class='post-all'>
-  <block wx:for="{{postList}}" wx:for-item="item" wx:for-index="idx">
-    <!--//template-->
-    <view data-postId="{{item.postId}}">
+  <block wx:for="{{postList}}" wx:for-item="item">
+    <!-- 这里把订单的objID以及数组的下标都从template中抽离，放上来，方便维护 -->
+    <view data-arrid="{{index}}" catchtap='arrcomfirm' data-objid="{{item.objectId}}">
       <template is="postItem" data="{{...item}}" />
     </view>
-    <modal hidden="{{hiddenmodalput2}}" title="订单编号：{{item.date}}" no-cancel="trues" confirm-text="返回" bindconfirm="confirm2">
-<!-- 抱歉这里我真的不知道怎么写。没办法从数据里获取 -->
+    <!-- 这里需要重写 -->
+    <!-- <modal hidden="{{hiddenmodalput2}}" title="订单编号：{{item.date}}" no-cancel="trues" confirm-text="返回" bindconfirm="confirm2">
+
       <text class='txettip'>发货点:{{orgin}}</text>
       <text class='txettip'>目的地:{{destination}}</text>
-    </modal>
+    </modal> -->
   </block>
 </view>
-
-<modal hidden="{{hiddenmodalput}}" title="确定完成订单?" cancel-text="取消" bindcancel="cancel" confirm-text="提交" bindconfirm="confirm">
-  <text class='txettip'>(确认后,订单会提交后台审核)</text>
-</modal>
-
-<modal hidden="{{hiddenmodalput1}}" title="中断订单请联系调度中心" no-cancel="trues" confirm-text="返回" bindconfirm="confirm1">
-  <text class='txettip'>0760-8335151</text>
-</modal>
