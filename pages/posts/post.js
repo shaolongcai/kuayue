@@ -10,7 +10,8 @@ Page({
     phone: '',
     code: '',
     rcode: '',
-    rphone: ''
+    rphone: '',
+    buffer_orderId: ''
   },
   onLoad: function () {
     //此处需改为从网络读取数据列表或后台修改数据
@@ -23,7 +24,7 @@ Page({
 
       var postsData2 = JSON.stringify(todos);
       var aa = JSON.parse(postsData2);
-
+      //console.log(aa);
       _this.setData({
         postList: aa
       });
@@ -38,25 +39,20 @@ Page({
   },
 
   onConfirmTap: function (event) {
-    console.log(event.currentTarget.id)
+    //console.log(event.currentTarget.id)
 
-    var query = new AV.Query('Orders');
-    query.get(event.currentTarget.id).then(function (ent) {
+    const user = AV.User.current();
+    var phone = user.get('phone');
 
-      ent.set('state', '0');//0-发布，1-已被接，2-已完成
-      //ent.set('acceptUser', '');//当前登陆用户
-      ent.save();
-      console.log(ent);
+    if (phone == null || phone == '') {
 
-    }, function (error) {
-      // 异常处理
-      console.error(error);
-    });
-
-    this.setData({
-      hiddenmodalput: !this.data.hiddenmodalput
-    })
-
+      this.setData({
+        hiddenmodalput: !this.data.hiddenmodalput,
+        buffer_orderId: event.currentTarget.id
+      })
+    } else {
+      app.relation_order(event.currentTarget.id);//建立订单关联
+    }
   },
 
   //todo 点击提交之后逻辑
@@ -83,24 +79,26 @@ Page({
       return;
     }
 
-    var query = new AV.Query('UserInfo');
+    var query = new AV.Query('_User ');
     query.equalTo('phone', _this.data.phone);
-    query.find().then(function (userinfo) {
+    query.find().then(function (user) {
 
-      if (userinfo.length == 0) {
+      if (user.length == 0) {
 
-        var UserInfo = AV.Object.extend('UserInfo');
-        var userInfo = new UserInfo();
-        userInfo.set('phone', _this.data.phone);
-        //userInfo.set('appid', appid);
-        //userInfo.set('openid', openid);
-        userInfo.save().then(function (userInfo) {
+        // 获得当前登录用户
+        const user = AV.User.current();
+        user.set('phone', _this.data.phone);
+        user.save().then(function (userInfo) {
+
+          app.relation_order(_this.data.buffer_orderId);//建立订单关联
           _this.setData({
             hiddenmodalput: true
           })
+
         }, function (error) {
           console.error(error);
         });
+
       } else {
         wx.showToast({
           title: '该号码已经被注册',
@@ -108,10 +106,7 @@ Page({
           duration: 2000
         })
       }
-
     })
-
-    
   },
 
   cancel: function () {
@@ -119,7 +114,7 @@ Page({
       hiddenmodalput: true
     })
     console.log('你点击了取消')
-    
+
   },
 
   //todo 获取验证码逻辑
@@ -130,9 +125,12 @@ Page({
     if (reg.test(_this.data.phone)) {
 
       wx.request({//获取验证码
-        url: 'http://huayoutong.com/mobile/send_vali_message',
+        url: 'http://huayoutong.com/mobile/send_vali_message3',
         data: {
-          phoneNum: _this.data.phone
+          phoneNum: _this.data.phone,
+          content: '短信校验码：',
+          key: '8826as8'
+
         },
         header: {
           'content-type': 'application/json' // 默认值
