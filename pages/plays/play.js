@@ -8,32 +8,6 @@ Page({
     hiddenmodalput2: true,
   },
 
-  onLoad: function () {
-
-    var _this = this;
-    // 获得当前登录用户
-    const user = AV.User.current();
-    var query = new AV.Query('Orders');
-    query.equalTo('acceptUser', user);
-
-    query.find().then(function (todos) {
-      var postsData2 = JSON.stringify(todos);
-      var aa = JSON.parse(postsData2);
-      console.log(aa);
-      _this.setData({
-        postList: aa
-      });
-
-    }).then(function (todos) {
-      // 更新成功
-    }, function (error) {
-      // 异常处理
-    });
-
-    //this.setData({
-    //postList: postsData.postList,
-    //});
-  },
 
   onReady:function(){
     var query = new AV.Query('Orders');
