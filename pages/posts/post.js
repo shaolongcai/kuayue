@@ -59,7 +59,11 @@ Page({
   confirm: function () {
 
     var _this = this;
-
+    var query = new AV.Query('_User');
+    query.equalTo('phone', _this.data.phone);
+    query.find().then(function (user) {
+      
+      if (user.length == 0) {
         // 获得当前登录用户
         const user = AV.User.current();
         user.set('phone', _this.data.phone);
