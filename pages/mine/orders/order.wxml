@@ -1,22 +1,26 @@
 <view class='allOrder'>
-  <view class='order'>选择器做不了.完全不会</view>
+ <picker mode="selector" range='{{range_arr}}' style='height:100rpx' bindchange="bindchange">
+  <view>
+    当前选择点部:{{choose_station}}
+  </view>
+ </picker>
 
   <view class='order'>
     <view class='orderSon'>完成单数</view>
-    <input class='input' type='number' placeholder='请输入数据'></input>
+    <input class='input' type='number' placeholder='请输入完成单数'></input>
   </view>
 
   <view class='order'>
     <view class='orderSon'>总金额　</view>
-    <input type='number' placeholder='请输入数据'></input>
+    <input type='number' placeholder='请输入总金额'></input>
   </view>
 
   <view class='order'>
     <view class='orderSon'>运输次数</view>
-    <input type='number' placeholder='请输入数据'></input>
+    <input type='number' placeholder='请输入运输次数'></input>
   </view>
 </view>
-    <view class='orderbutton'>
-      <button class="post-confirm-success" catchtap='onConfirmTap'>提交</button>
-      <button class="post-confirm-stop" catchtap='onStopTap'>取消</button>
-    </view>
+<view class='orderbutton'>
+  <button class="post-confirm-success" catchtap='onConfirmTap'>提交</button>
+  <button class="post-confirm-stop" catchtap='onStopTap'>返回</button>
+</view>

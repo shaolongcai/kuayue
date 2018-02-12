@@ -1,30 +1,55 @@
-var postsData = require('../../data/posts-data.js')
+const AV = require('../../utils/av-live-query-weapp-min');
+const order = require('../../model/order-model.js');
 var app = getApp();
 
 Page({
   data: {
-    hiddenmodalput: true,
     hiddenmodalput1: true,
     hiddenmodalput2: true,
   },
 
   onLoad: function () {
-    this.setData({
-      postList: postsData.postList,
+
+    var _this = this;
+    // 获得当前登录用户
+    const user = AV.User.current();
+    var query = new AV.Query('Orders');
+    query.equalTo('acceptUser', user);
+
+    query.find().then(function (todos) {
+      var postsData2 = JSON.stringify(todos);
+      var aa = JSON.parse(postsData2);
+      console.log(aa);
+      _this.setData({
+        postList: aa
+      });
+
+    }).then(function (todos) {
+      // 更新成功
+    }, function (error) {
+      // 异常处理
     });
+
+    //this.setData({
+    //postList: postsData.postList,
+    //});
   },
 
-  //TODO 完成订单逻辑
-  onConfirmTap: function () {
-    wx.showToast({
-      title: '你点击了完成订单',
+  onReady:function(){
+    var query = new AV.Query('Orders');
+    query.equalTo('state', '1');//0-发布，1-已被接，2-已完成
+    query.find().then((res)=>{
+      this.setData({ postList:res})
     })
   },
 
+
   //TODO 终止订单逻辑
   onStopTap: function () {
-    this.setData({
-      hiddenmodalput1: !this.data.hiddenmodalput1
+    wx.showModal({
+      title: '中断订单请联系调度中心',
+      content: '0760-8335151',
+      showCancel:false
     })
   },
 
@@ -38,13 +63,50 @@ Page({
     })
   },
 
-  onConfirmTap: function (event) {
-    console.log('你点击了接受订单')
+  //获取订单对objid和所在数组下标
+  arrcomfirm:function(event){
+    var objid = event.currentTarget.dataset.objid
+    var arrid = event.currentTarget.dataset.arrid
     this.setData({
-      hiddenmodalput: !this.data.hiddenmodalput
+      objid:objid,
+      arrid:arrid
+    })
+  },
+
+  //点击"完成订单"
+  onConfirmTap: function (event) {
+    wx.showModal({
+      title: '确定完成订单？',
+      content: '确认后，订单会提交后台审核',
+      success:(res)=>{
+        //更改订单状态
+        if(res.confirm){
+          //获取订单的objID修改状态
+          var objid = this.data.objid
+          //获取数组下标，删除元素
+          var arrid = this.data.arrid
+          var order = this.data.postList
+          var Orders = AV.Object.createWithoutData('Orders', objid);
+          Orders.set("state","2")
+          Orders.save()
+          .then(res=>{
+            order.splice(arrid,1)
+            this.setData({
+              postList:order
+            })
+            wx.showToast({
+              title: '完成订单',
+              mask:true,
+              duration:1000
+            })
+          }
+          )
+        }
+      }
     })
 
   },
+  
 
   //todo 点击提交之后逻辑
   confirm: function () {
@@ -54,17 +116,6 @@ Page({
     console.log('你点击了提交')
     wx.showToast({
       title: '你点击了提交',
-      duration: 1000
-    })
-  },
-
-  cancel: function () {
-    this.setData({
-      hiddenmodalput: true
-    })
-    console.log('你点击了取消')
-    wx.showToast({
-      title: '你点击了取消',
       duration: 1000
     })
   },
@@ -82,11 +133,6 @@ Page({
   confirm1: function () {
     this.setData({
       hiddenmodalput1: true
-    })
-    console.log('你点击了返回')
-    wx.showToast({
-      title: '你点击了返回',
-      duration: 1000
     })
   },
 

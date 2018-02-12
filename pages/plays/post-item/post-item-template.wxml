@@ -17,7 +17,7 @@
        <text class='post-xiangqing' catchtap='onClick'>详情></text> 
     </view>
     <view class='post-dingdan'>
-      <button class="post-confirm-success" catchtap='onConfirmTap'>完成订单</button>
+      <button class="post-confirm-success" bindtap='onConfirmTap'>完成订单</button>
       <button class="post-confirm-stop" catchtap='onStopTap'>终止订单</button>
     </view>
   </view>
