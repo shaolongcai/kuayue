@@ -60,31 +60,6 @@ Page({
 
     var _this = this;
 
-    var reg = /^0?(13|14|15|17|18|19)[0-9]{9}$/;
-
-    if (!reg.test(_this.data.phone)) {
-      wx.showToast({
-        title: '手机号码有误',
-        icon: 'none',
-        duration: 1000
-      })
-      return;
-    }
-    if (_this.data.phone != _this.data.rphone || _this.data.code != _this.data.rcode) {
-      wx.showToast({
-        title: '验证码有误',
-        icon: 'none',
-        duration: 1000
-      })
-      return;
-    }
-
-    var query = new AV.Query('_User ');
-    query.equalTo('phone', _this.data.phone);
-    query.find().then(function (user) {
-
-      if (user.length == 0) {
-
         // 获得当前登录用户
         const user = AV.User.current();
         user.set('phone', _this.data.phone);

@@ -9,7 +9,6 @@ Page({
   },
 
 
-
   onReady:function(){
     var query = new AV.Query('Orders');
     query.equalTo('state', '1');//0-发布，1-已被接，2-已完成
